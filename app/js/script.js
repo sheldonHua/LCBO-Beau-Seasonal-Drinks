@@ -11,13 +11,12 @@ app.init = function(){
 	app.ajaxCall(app.key, data);
 }
 
-app.ajaxCall = function(accessKey){
+app.ajaxCall = function(accessKey, dataObj){
 	var nutritionApi = $.ajax({
-		url: `https://lcboapi.com/products?access_key=${accessKey}`,
-		headers: { 'Authorization': 'Token '+ accesskey }
+		url: `https://lcboapi.com/products?q=beaus`,
+		headers: { 'Authorization': 'Token '+ accessKey },
 		type: 'GET',
 		dataType: 'json',
-		data: JSON.stringify(dataObj) ,
 		success: function(data){
 			console.log(data);
 		}
