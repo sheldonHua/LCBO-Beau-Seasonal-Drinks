@@ -20,16 +20,17 @@ app.ajaxCall = function(accessKey, search) {
 }
 
 app.filter = function(data) {
-
 	// return seasonal drinks
-	var seasonal = data.filter(function(drink) {
+	app.seasonal = data.filter(function(drink) {
 		return drink.is_seasonal === true;
 	});
+	// return array of product id(s)
+	app.productId = app.seasonal.map(function(drink) {
+		return drink.id;
+	});
 
-	
-
-
-	
+	console.log(app.seasonal);
+	console.log(app.productId);
 }
 
 $(function() {
