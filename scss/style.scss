@@ -1,1 +1,43 @@
 @import "reset";
+@import "base";
+
+.wrapper{
+	max-width: 1200px;
+	width: 100%;
+	margin: 0 auto;
+	padding: 0 15px;
+}
+
+header {
+	padding: 20px 0;
+	background: #f5dfbd;
+	font-family: 'Abril Fatface', cursive;
+	border-bottom:1px solid #c4a077;
+	h1{
+		font-size: 50px;
+	}
+}
+
+.drinkCall {
+	padding-top:20px;
+	.drinks {
+		cursor: pointer;
+		width: 33%;
+		min-height: 352px;
+		float: left;
+		text-align:center;
+		border: 1px solid white;
+		padding-bottom:25px;
+		&:hover {
+			border: 1px solid #c4a077;
+		}
+		h1 {
+			font-size: 18px;
+		}
+		img{
+			display: block;
+			height: 319px;
+			margin: 0 auto;
+		}
+	}
+}

@@ -16,57 +16,59 @@ app.getDrink = function(accessKey, search) {
 		type: 'GET',
 		dataType: 'json',
 		success: function(data){
-			app.getProductId(data.result);
+			app.filterData(data.result);
 			//console.log(data);
 		}
 	});	
 }
 
 app.getStores = function(accessKey, product) {
-	var drinkList = [];
-	for (i = 0; i < product.length; i++){
-		$.ajax({
-			url: `https://lcboapi.com/stores?product_id=${product[i]}`,
-			headers: { 'Authorization': 'Token '+ accessKey },
-			type: 'GET',
-			dataType: 'json',
-			success: function(data){
-				console.log(data);
-				app.parseData(data);
+	$.ajax({
+		url: `https://lcboapi.com/stores?product_id=${product[i]}`,
+		headers: { 'Authorization': 'Token '+ accessKey },
+		type: 'GET',
+		dataType: 'json',
+		success: function(data){
+			//console.log(data);
+			//app.parseData(data);
+		}
+	});		
+}
+
+app.parseThumbnail = function(drinks) {
+	var drinkList = drinks
+	.map(function(drink){
+			if (drink.image_thumb_url === null){
+				var drinkHTML = `
+					<div class="drinks" data-id="${drink.id}">
+						<img src="image/placeholder.png" />
+						<h1>${drink.name}</h1>
+					</div>
+				`;
+				return drinkHTML;
 			}
-		});	
-	}
+			else {
+				var drinkHTML = `
+					<div class="drinks" data-id="${drink.id}">
+						<img src="${drink.image_thumb_url}" />
+						<h1>${drink.name}</h1>
+					</div>
+				`;
+				return drinkHTML;
+			}
+		}).join(' ');
 
-	console.log(app.drinkArray);
-	//console.log(drinkList);
-
-	//app.parseData(drinkList);
-	//once loop is done display html
-
+	console.log(drinkList);
+	$('.drinkCall .wrapper').html(drinkList);
 }
 
-app.parseData = function(data) {
-	var drinkHtml = 
-	`<div class="food"><img src="${data.product.image_thumb_url}"/></div>`;
-
-	app.drinkArray.push(drinkHtml);
-
-}
-
-app.getProductId = function(data) {
+app.filterData = function(data) {
 	// return seasonal drinks
 	var seasonal = data.filter(function(drink) {
 		return drink.is_seasonal === true;
 	});
 
-	// return array of product id(s)
-	var productId = seasonal.map(function(drink) {
-		return drink.id;
-	});
-
-	//console.log(productId);
-
-	app.getStores(app.key, productId);
+	app.parseThumbnail(seasonal);
 }
 
 $(function() {
