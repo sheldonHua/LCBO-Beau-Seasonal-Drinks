@@ -6,6 +6,21 @@ app.drinkArray = [];
 
 app.init = function() {
 	app.getDrink(app.key, "beaus");
+	
+	$(document).on('click', '.drinks' ,function() {
+		document.getElementById("myNav").style.width = "100%";
+
+		var productId = $(this).attr("data-id");
+		console.log(productId);
+		app.getStores(app.key, productId);
+
+	});
+
+	$(document).on('click', '.closebtn' ,function() {
+		document.getElementById("myNav").style.width = "0%";
+	});
+
+
 	//app.getStores(app.key);
 }
 
@@ -24,12 +39,12 @@ app.getDrink = function(accessKey, search) {
 
 app.getStores = function(accessKey, product) {
 	$.ajax({
-		url: `https://lcboapi.com/stores?product_id=${product[i]}`,
+		url: `https://lcboapi.com/stores?product_id=${product}`,
 		headers: { 'Authorization': 'Token '+ accessKey },
 		type: 'GET',
 		dataType: 'json',
 		success: function(data){
-			//console.log(data);
+			console.log(data);
 			//app.parseData(data);
 		}
 	});		
@@ -58,7 +73,7 @@ app.parseThumbnail = function(drinks) {
 			}
 		}).join(' ');
 
-	console.log(drinkList);
+	//console.log(drinkList);
 	$('.drinkCall .wrapper').html(drinkList);
 }
 
