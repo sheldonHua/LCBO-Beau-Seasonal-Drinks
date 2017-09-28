@@ -8,7 +8,10 @@ app.init = function() {
 	app.getDrink(app.key, "beaus");
 	
 	$(document).on('click', '.drinks' ,function() {
-		document.getElementById("myNav").style.width = "100%";
+		var myNav = document.getElementById("myNav");
+		myNav.style.width = "100%";
+		myNav.style.backgroundColor = "rgba(0,0,0, 0.9)";
+		$('.overlay').addClass('animation');
 
 		var productId = $(this).attr("data-id");
 		console.log(productId);
@@ -17,6 +20,7 @@ app.init = function() {
 	});
 
 	$(document).on('click', '.closebtn' ,function() {
+		$('.overlay').removeClass('animation');
 		$('.overlay-content .wrapper').empty();
 		document.getElementById("myNav").style.width = "0%";
 	});
