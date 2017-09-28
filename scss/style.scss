@@ -3,6 +3,10 @@
 @import "overlay";
 @import "loader";
 
+.container{
+	padding-bottom:40px;
+}
+
 .wrapper {
 	max-width: 1200px;
 	width: 100%;
@@ -24,21 +28,24 @@ header {
 	padding-top:20px;
 	.drinks {
 		cursor: pointer;
-		width: 33%;
+		width: 50%;
 		min-height: 352px;
 		float: left;
 		text-align:center;
 		border: 1px solid white;
-		padding-bottom:25px;
+		padding:5px 20px 20px 20px;
+		
 		&:hover {
 			border: 1px solid #c4a077;
 		}
 		h1 {
 			font-size: 18px;
+			height: 35px;
 		}
 		img {
 			display: block;
-			height: 319px;
+			height: auto;
+			width:100%;
 			margin: 0 auto;
 		}
 	}
@@ -52,10 +59,10 @@ header {
 	}
 	.content-container{
 		float: left;
-		width:70%;
+		width:100%;
 		color:white;
 		text-align:left;
-		padding: 0 40px;
+		padding: 0 10px;
 		padding-top:20px;
 		h1 {
 			font-size:34px;
@@ -79,8 +86,30 @@ header {
 		}
 	}
 	.img-container {
+		display:none;
 		float: left;
 		width:30%;
 	}
 
+}
+
+@media (min-width:768px){
+	.drinkCall {
+		.drinks {
+			width: 33%;
+			img {
+				height: 319px;
+				width:auto;
+			}
+		}
+	}
+	.drink-content{
+		.content-container{
+			width:70%;
+			padding: 0 40px;
+		}
+		.img-container {
+			display:block;
+		}
+	}
 }
