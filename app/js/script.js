@@ -4,28 +4,28 @@ app.key = 'MDo0NTQyN2MzYS1hMjA0LTExZTctODg1NS01MzE1NzZlNzljOGI6cjRpVm8wd3k1MktnN
 
 app.drinkArray = [];
 
+var $overlayWrapper = $('.overlay-content .wrapper');
+
 app.init = function() {
 	app.getDrink(app.key, "beaus");
 	
 	$(document).on('click', '.drinks' ,function() {
+		app.loader();
 		var myNav = document.getElementById("myNav");
 		myNav.style.width = "100%";
 		myNav.style.backgroundColor = "rgba(0,0,0, 0.9)";
 		$('.overlay').addClass('animation');
-
 		var productId = $(this).attr("data-id");
-		console.log(productId);
 		app.getStores(app.key, productId);
 
 	});
 
 	$(document).on('click', '.closebtn' ,function() {
 		$('.overlay').removeClass('animation');
-		$('.overlay-content .wrapper').empty();
+		$overlayWrapper.empty();
 		document.getElementById("myNav").style.width = "0%";
 	});
 
-	//app.getStores(app.key);
 }
 
 app.getDrink = function(accessKey, search) {
@@ -80,7 +80,7 @@ app.parseContent = function(drink, store) {
 				</div>
 			</div>
 		`;
-		$('.overlay-content .wrapper').html(drinkHTML);
+		$overlayWrapper.html(drinkHTML);
 	}
 	else {
 		var drinkHTML = `
@@ -96,7 +96,7 @@ app.parseContent = function(drink, store) {
 				</div>
 			</div>
 		`;
-		$('.overlay-content .wrapper').html(drinkHTML);
+		$overlayWrapper.html(drinkHTML);
 	}
 	
 }
@@ -132,9 +132,17 @@ app.filterData = function(data) {
 	var seasonal = data.filter(function(drink) {
 		return drink.is_seasonal === true;
 	});
-
 	app.parseThumbnail(seasonal);
 }
+
+app.loader = function(){
+	$overlayWrapper.html(`<div class="spinner">
+		  <div class="bounce1"></div>
+		  <div class="bounce2"></div>
+		  <div class="bounce3"></div>
+	</div>`);
+}
+
 
 $(function() {
 	app.init();
