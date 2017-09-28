@@ -20,7 +20,6 @@ app.init = function() {
 		document.getElementById("myNav").style.width = "0%";
 	});
 
-
 	//app.getStores(app.key);
 }
 
@@ -32,7 +31,6 @@ app.getDrink = function(accessKey, search) {
 		dataType: 'json',
 		success: function(data){
 			app.filterData(data.result);
-			//console.log(data);
 		}
 	});	
 }
@@ -44,10 +42,45 @@ app.getStores = function(accessKey, product) {
 		type: 'GET',
 		dataType: 'json',
 		success: function(data){
-			console.log(data);
-			//app.parseData(data);
+		
+			app.parseContent(data);
 		}
 	});		
+}
+
+app.parseContent = function(drink) {
+	console.log(drink);
+	if (drink.product.image_url === null){
+		var drinkHTML = `
+			<div class="drink-content clearfix">
+				<div class="img-container">
+					<img src="image/placeholder_full.png" />
+				</div>
+				<div class="content-container">
+					<h1>${drink.product.name}</h1>
+					<p>${drink.product.tasting_note}</p>
+				</div>
+			</div>
+		`;
+		$('.overlay-content .wrapper').html(drinkHTML);
+	}
+	else {
+		var drinkHTML = `
+			<div class="drink-content clearfix">
+				<div class="img-container">
+					<img src="${drink.product.image_url}" />
+				</div>
+				<div class="content-container">
+					<h1>${drink.product.name}</h1>
+					<p>${drink.product.tasting_note}</p>
+				</div>
+			</div>
+		`;
+		$('.overlay-content .wrapper').html(drinkHTML);
+	}
+	
+
+	
 }
 
 app.parseThumbnail = function(drinks) {
@@ -73,7 +106,6 @@ app.parseThumbnail = function(drinks) {
 			}
 		}).join(' ');
 
-	//console.log(drinkList);
 	$('.drinkCall .wrapper').html(drinkList);
 }
 

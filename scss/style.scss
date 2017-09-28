@@ -42,3 +42,29 @@ header {
 		}
 	}
 }
+
+
+.drink-content{
+	img{
+		width:100%;
+		display:block;
+	}
+	.content-container{
+		float: left;
+		width:70%;
+		color:white;
+		text-align:left;
+		padding: 0 40px;
+		h1{
+			font-size:30px;
+			margin-bottom:20px;
+		}
+		p{
+			font-size:22px;
+		}
+	}
+	.img-container{
+		float: left;
+		width:30%;
+	}
+}
