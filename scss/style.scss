@@ -55,16 +55,30 @@ header {
 		color:white;
 		text-align:left;
 		padding: 0 40px;
+		padding-top:20px;
 		h1{
 			font-size:30px;
 			margin-bottom:20px;
 		}
 		p{
-			font-size:22px;
+			font-size:20px;
+		}
+
+		h2 {
+			margin-top:60px;
+			font-size:14px;
+		}
+
+		.storeList span {
+			font-size:12px;
+			line-height:1;
+			margin:0;
+			padding:0;
 		}
 	}
 	.img-container{
 		float: left;
 		width:30%;
 	}
+
 }
