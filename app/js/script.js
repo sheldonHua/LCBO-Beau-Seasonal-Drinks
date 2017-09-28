@@ -66,39 +66,30 @@ app.parseStore = function(stores){
 
 app.parseContent = function(drink, store) {
 	console.log(drink);
-	if (drink.product.image_url === null){
-		var drinkHTML = `
-			<div class="drink-content clearfix">
-				<div class="img-container">
-					<img src="image/placeholder_full.png" />
-				</div>
-				<div class="content-container">
-					<h1>${drink.product.name}</h1>
-					<p>${drink.product.tasting_note}</p>
-					<h2>Stores:</h2>
-					<p class="storeList">${store}</p>
-				</div>
-			</div>
-		`;
-		$overlayWrapper.html(drinkHTML);
+
+	if (drink.product.image_url === null) {
+		drink.product.image_url = "image/placeholder_full.png";
 	}
-	else {
-		var drinkHTML = `
-			<div class="drink-content clearfix">
-				<div class="img-container">
-					<img src="${drink.product.image_url}" />
-				</div>
-				<div class="content-container">
-					<h1>${drink.product.name}</h1>
-					<p>${drink.product.tasting_note}</p>
-					<h2>Stores:</h2>
-					<p class="storeList">${store}</p>
-				</div>
-			</div>
-		`;
-		$overlayWrapper.html(drinkHTML);
+
+	if (drink.product.tasting_note === null) {
+		drink.product.tasting_note = "No description available.";
 	}
-	
+
+	var drinkHTML = `
+		<div class="drink-content clearfix">
+			<div class="img-container">
+				<img src="${drink.product.image_url}" />
+			</div>
+			<div class="content-container">
+				<h1>${drink.product.name}</h1>
+				<p>${drink.product.tasting_note}</p>
+				<h2>Stores:</h2>
+				<p class="storeList">${store}</p>
+			</div>
+		</div>
+	`;	
+
+	$overlayWrapper.html(drinkHTML);
 }
 
 app.parseThumbnail = function(drinks) {
@@ -142,7 +133,6 @@ app.loader = function(){
 		  <div class="bounce3"></div>
 	</div>`);
 }
-
 
 $(function() {
 	app.init();
