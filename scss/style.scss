@@ -20,7 +20,7 @@ header {
 	font-family: 'Abril Fatface', cursive;
 	border-bottom:1px solid #c4a077;
 	h1 {
-		font-size: 50px;
+		font-size: 40px;
 	}
 }
 
@@ -29,7 +29,6 @@ header {
 	.drinks {
 		cursor: pointer;
 		width: 50%;
-		min-height: 352px;
 		float: left;
 		text-align:center;
 		border: 1px solid white;
@@ -39,8 +38,8 @@ header {
 			border: 1px solid #c4a077;
 		}
 		h1 {
-			font-size: 18px;
-			height: 35px;
+			font-size: 15px;
+			height: 50px;
 		}
 		img {
 			display: block;
@@ -65,16 +64,17 @@ header {
 		padding: 0 10px;
 		padding-top:20px;
 		h1 {
-			font-size:34px;
+			font-size:30px;
 			margin-bottom:20px;
 			color: #a4baba;
+			font-family: 'Abril Fatface', cursive;
 		}
 		p {
-			font-size:20px;
+			font-size:16px;
 		}
 
 		h2 {
-			margin-top:60px;
+			margin-top:40px;
 			font-size:14px;
 		}
 
@@ -83,6 +83,7 @@ header {
 			line-height:1;
 			margin:0;
 			padding:0;
+			padding-bottom: 40px;
 		}
 	}
 	.img-container {
@@ -94,9 +95,23 @@ header {
 }
 
 @media (min-width:768px){
+	header {
+		h1 {
+			font-size: 50px;
+		}
+	}
+	.overlay-content {
+		top:20%;
+	}
 	.drinkCall {
 		.drinks {
 			width: 33%;
+
+			h1 {
+				font-size: 18px;
+				height: 35px;
+			}
+
 			img {
 				height: 319px;
 				width:auto;
@@ -106,7 +121,16 @@ header {
 	.drink-content{
 		.content-container{
 			width:70%;
-			padding: 0 40px;
+			padding: 20px 40px;
+			h1 {
+				font-size:44px;
+			}
+			p {
+				font-size:20px;
+			}
+			h2 {
+				margin-top:50px;
+			}
 		}
 		.img-container {
 			display:block;
