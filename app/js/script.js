@@ -53,10 +53,12 @@ app.getStores = function(accessKey, product) {
 }
 
 app.parseStore = function(stores){
+
+
 	var storeList = stores
 	.map(function(store){
 			var storeHTML = `
-				<span>${store.name}, </span>
+				<a href="http://maps.google.com/?q=${store.address_line_1 + " " + store.city }" target="_blank"><i class="fa fa-map-marker" aria-hidden="true"></i> ${store.name}, </a>
 			`;
 			return storeHTML;	
 	}).join(' ');
@@ -83,8 +85,10 @@ app.parseContent = function(drink, store) {
 			<div class="content-container">
 				<h1>${drink.product.name}</h1>
 				<p>${drink.product.tasting_note}</p>
-				<h2>Stores:</h2>
-				<p class="storeList">${store}</p>
+				<h2>Available LCBO locations:</h2>
+				<ul>
+				<li class="storeList">${store}</li>
+				</ul>
 			</div>
 		</div>
 	`;	
