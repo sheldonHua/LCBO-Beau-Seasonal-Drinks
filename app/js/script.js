@@ -2,11 +2,10 @@ var app = {};
 
 app.key = 'MDo0NTQyN2MzYS1hMjA0LTExZTctODg1NS01MzE1NzZlNzljOGI6cjRpVm8wd3k1MktnNkxWQVczSjZhQ1Q2QTVjNFlXSkphdGNZ';
 
-app.drinkArray = [];
-
 var $overlayWrapper = $('.overlay-content .wrapper');
 
 app.init = function() {
+	// Search product Beau's
 	app.getDrink(app.key, "beaus");
 	
 	$(document).on('click', '.drinks' ,function() {
@@ -16,6 +15,8 @@ app.init = function() {
 		myNav.style.backgroundColor = "rgba(0,0,0, 0.9)";
 		$('.overlay').addClass('animation');
 		var productId = $(this).attr("data-id");
+
+		// Get store and drink content and append it onto flyover
 		app.getStores(app.key, productId);
 
 	});
@@ -53,8 +54,7 @@ app.getStores = function(accessKey, product) {
 }
 
 app.parseStore = function(stores){
-
-
+	// Generate an array of store locations formatted in html
 	var storeList = stores
 	.map(function(store){
 			var storeHTML = `
@@ -67,8 +67,8 @@ app.parseStore = function(stores){
 }
 
 app.parseContent = function(drink, store) {
-	console.log(drink);
 
+	// If data is null replace with placeholder content
 	if (drink.product.image_url === null) {
 		drink.product.image_url = "image/placeholder_full.png";
 	}
@@ -93,12 +93,17 @@ app.parseContent = function(drink, store) {
 		</div>
 	`;	
 
+	// Append drink content onto flyover
 	$overlayWrapper.html(drinkHTML);
 }
 
 app.parseThumbnail = function(drinks) {
+
+	// Generate an array with all the drinks formatted in html
 	var drinkList = drinks
 	.map(function(drink){
+
+			// Use placeholder image if no thumbnail image is returned from api
 			if (drink.image_thumb_url === null){
 				var drinkHTML = `
 					<div class="drinks" data-id="${drink.id}">
@@ -119,11 +124,12 @@ app.parseThumbnail = function(drinks) {
 			}
 		}).join(' ');
 
+	// Append drinks onto page
 	$('.drinkCall .wrapper').html(drinkList);
 }
 
 app.filterData = function(data) {
-	// return seasonal drinks
+	// Filter and return seasonal drinks only
 	var seasonal = data.filter(function(drink) {
 		return drink.is_seasonal === true;
 	});
