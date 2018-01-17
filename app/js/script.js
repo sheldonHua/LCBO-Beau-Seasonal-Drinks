@@ -68,7 +68,6 @@ app.parseStore = function(stores){
 }
 
 app.parseContent = function(drink, store) {
-
 	// If data is null replace with placeholder content
 	if (drink.product.image_url === null) {
 		drink.product.image_url = "image/placeholder_full.png";
