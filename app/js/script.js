@@ -48,6 +48,7 @@ app.getStores = function(accessKey, product) {
 		type: 'GET',
 		dataType: 'json',
 		success: function(data){
+			console.log(data)
 			app.parseContent(data, app.parseStore(data.result));
 		}
 	});		
